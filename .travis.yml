@@ -3,3 +3,28 @@ rvm:
  - 2.2
  - jruby
  - rbx-2
+deploy:
+  provider: s3
+  access_key_id: "AKIAJBEOVU6BFMNUPSCQ "
+  secret_access_key: "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"
+  travis encrypt --add deploy.secret_access_key
+  bucket: "S3 Bucket"
+   skip_cleanup: true
+   region: ap-south-1
+   local_dir: build
+   
+   acl: public_read
+   
+   {
+  "Version": "2014-09-25",
+  "Statement":[{
+    "Sid":"AllowPublicRead",
+        "Effect":"Allow",
+      "Principal": "*",
+      "Action":["s3:GetObject"],
+      "Resource":["arn:aws:s3:::"YOUR BUCKET NAME"/*"
+      ]
+    }
+  ]
+}
+
